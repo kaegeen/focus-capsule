@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Focus Capsule</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white min-h-screen flex flex-col items-center justify-center px-6 py-10">
+  <h1 class="text-3xl font-bold mb-6">Focus Capsule</h1>
+
+  <div id="capsule" class="text-xl text-center max-w-xl bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
+    Click “New Capsule” to begin
+  </div>
+
+  <button onclick="newCapsule()" class="px-6 py-2 bg-green-600 hover:bg-green-700 rounded text-lg">New Capsule</button>
+
+  <script>
+    const prompts = [
+      "Recall one small win from the last 24 hours.",
+      "Visualize how you want the next hour to feel.",
+      "Sit up straight. Breathe. Reset.",
+      "What is one task you’re avoiding? Name it mentally.",
+      "Think of someone who inspired you recently.",
+      "Take 5 slow breaths.",
+      "List 3 things you're grateful for.",
+      "What’s the one thing that actually matters right now?",
+      "Unclench your jaw. Relax your shoulders.",
+      "Envision success in 30 minutes from now.",
+    ]
+
+    const used = new Set()
+
+    function newCapsule() {
+      if (used.size === prompts.length) {
+        used.clear()
+      }
+
+      let prompt
+      do {
+        prompt = prompts[Math.floor(Math.random() * prompts.length)]
+      } while (used.has(prompt))
+
+      used.add(prompt)
+      document.getElementById('capsule').textContent = prompt
+    }
+  </script>
+</body>
+</html>
